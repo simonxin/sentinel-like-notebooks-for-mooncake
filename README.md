@@ -3,6 +3,10 @@ We can leverage Azure Sentinel notebooks to hunt for security threats.
 Notebook usage can be referred in the below article: 
 https://docs.microsoft.com/en-us/azure/sentinel/notebooks
 
+Currently, we have two sample notebooks which you can find the details: 
+## [Hunting Threats on Linux VMs](Entity Explorer - Linux Host.ipynb)
+## [Hunting Threats on Windows VMs](Entity Explorer - Windows Host.ipynb)
+
 
 # Install sample notebooks: 
 Please follow the below steps to create a machine learning workspace:
@@ -11,9 +15,9 @@ Please follow the below steps to create a machine learning workspace:
 3) Write a configuration file file (aml_config/config.json).
 4) Clone the GitHub repository.
     ```bash
-        git clone https://github.com/simonxin/sampleNotebooks.git
+        git clone https://github.com/simonxin/sentinel-like-notebooks-for-mooncake
     ````
-5) Start the notebook server from your cloned directory.
+5) Start the notebook server from your cloned directory by running command as below: 
 
     ```bash
         jupyter notebook
@@ -81,15 +85,10 @@ https://techcommunity.microsoft.com/t5/azure-sentinel/using-threat-intelligence-
 
 You may need to go to the target Threat intelligence provider web to register and request API auth keys: 
 
-## virustotal: 
-https://developers.virustotal.com/v3.0/reference#overview
-
-## OTX
-
 ## VirusTotal 
 https://developers.virustotal.com/reference
 
-## AlienVault Open Threat Exchange 
+## AlienVault Open Threat Exchange  (OTX)
 https://otx.alienvault.com/api
 
 ## IBM XForce 
@@ -111,4 +110,28 @@ To connect your log analytics workspace into notebook, edit the config.json file
     "workspace_name": "<your_workspace_name>"
 }
 ```
+
+# To start hunting using the sample notebooks
+You can open the sample notebook in Jupyter console. 
+
+## Please modify the below code in notebook to add authentication with a valid service principal
+
+```authentication code
+if config is False:
+    ws_id = ws_id_wgt.value
+    ten_id = ten_id_wgt.value
+# Establish a query provider for Azure Sentinel and connect to it
+connect_str = "loganalytics://tenant(ten_id).data_source_url('https://api.loganalytics.azure.cn').aad_url('https://login.chinacloudapi.cn').clientid('<your_client_id>').clientsecret('<your_cient_secret>').workspace(ws_id)"
+
+qry_prov = QueryProvider('LogAnalytics')
+qry_prov.connect(connect_str)
+table_index = qry_prov.schema_tables
+```
+
+Note: please follow the below document to prepare a valid service principal to access Log Analytics API endpoint:
+https://dev.loganalytics.io/oms/documentation/1-Tutorials/1-Direct-API
+
+Once the authenticaiton is passed, you can will get a data source as below in notebook which you can use the data for threat hunting: 
+<your_workspace_ID>@loganalytics
+![](https://github.com/simonxin/sentinel-like-notebooks-for-mooncake/blob/master/img/logadatasource.png)
 
