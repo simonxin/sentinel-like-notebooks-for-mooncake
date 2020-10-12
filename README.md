@@ -4,8 +4,8 @@ Notebook usage can be referred in the below article:
 https://docs.microsoft.com/en-us/azure/sentinel/notebooks
 
 Currently, we have two sample notebooks which you can find the details: 
-## [Hunting Threats on Linux VMs](/Entity Explorer - Linux Host.ipynb)
-## [Hunting Threats on Windows VMs](/Entity Explorer - Windows Host.ipynb)
+## [Hunting Threats on Linux VMs](https://github.com/simonxin/sentinel-like-notebooks-for-mooncake/blob/master/Entity%20Explorer%20-%20Linux%20Host.ipynb)
+## [Hunting Threats on Windows VMs](https://github.com/simonxin/sentinel-like-notebooks-for-mooncake/blob/master/Entity%20Explorer%20-%20Windows%20Host.ipynb)
 
 
 # Install sample notebooks: 
