@@ -1,0 +1,43 @@
+AzureSentinel:
+  Workspaces:
+    # Workspace used if you don't explicitly name a workspace when creating WorkspaceConfig
+    # Specifying values here overrides config.json settings unless you explictly load
+    # WorkspaceConfig with config_file parameter (WorkspaceConfig(config_file="../config.json")
+    Default:
+      WorkspaceId: "<your_log_analytic_workspace_ID>"
+      TenantId: "<your_AAD_tenant_ID>"
+QueryDefinitions:
+  # Add paths to folders containing custom query definitions here
+  Custom:
+TIProviders:
+  # If a provider has Primary: True it will be run by default on IoC lookups
+  # Secondary providers can be
+  OTX:
+    Args:
+      AuthKey: "<your_registered_OTX_key>"
+    Primary: True
+    Provider: "OTX" # WARNING - Do not change Provider values!
+  VirusTotal:
+    Args:
+      AuthKey: "<your_registered_Virustotal_key>"
+    Primary: False
+    Provider: "VirusTotal"
+  XForce:
+    # You can store items in an environment variable using this syntax
+    Args:
+      ApiID: "<your_registed_xforce_ID>"
+      AuthKey: "<your_registered_xforce_key>"
+    Primary: True
+    Provider: "XForce"
+OtherProviders:
+  GeoIPLite:
+    Args:
+      AuthKey: "<your_registered_GeoIPList_key>"
+      DBFolder: "~/.msticpy"
+    Provider: "GeoLiteLookup"
+DataProviders:
+  AzureCLI:
+    Args:
+      clientId: "<client_ID>"
+      tenantId: "<your_AAD_Tenant_ID>"
+      clientSecret: "<client_Secret>"

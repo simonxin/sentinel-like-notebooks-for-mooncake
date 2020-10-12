@@ -1,0 +1,7 @@
+{
+    "tenant_id": "<your_AAD_tenant_ID>",
+    "subscription_id": "<your_subscription_ID>",
+    "resource_group": "<Resource_group_of_your_log_analytics_workspace>",
+    "workspace_id": "<your_workspace_ID>",
+    "workspace_name": "<your_workspace_name>"
+}
